@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Comidas Semanal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-5">
+        <h1 class="text-xl font-bold text-center mb-5">Planificador de Comidas Semanal 🍽️</h1>
+        <table class="table-auto w-full mb-5">
+            <thead>
+                <tr class="bg-blue-200">
+                    <th class="p-2">Día / Comida</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-green-100">
+                    <td class="p-2 font-bold">Desayuno</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                </tr>
+                <tr class="bg-green-200">
+                    <td class="p-2 font-bold">Comida</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                </tr>
+                <tr class="bg-green-300">
+                    <td class="p-2 font-bold">Cena</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="suggestMeals()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+            Sugerir Platos Saludables
+        </button>
+        <button onclick="clearTable()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4">
+            Limpiar Tabla
+        </button>
+    </div>
+
+    <script>
+        function suggestMeals() {
+            const meals = {
+                "Monday": ['Tortilla de espinacas', 'Pollo asado con verduras', 'Ensalada con atún'],
+                "Tuesday": ['Yogurt con granola y frutas', 'Pescado al horno con brócoli', 'Sopa de verduras'],
+                "Wednesday": ['Panqueques de avena', 'Ensalada de quinoa con aguacate', 'Lentejas estofadas'],
+                "Thursday": ['Huevos revueltos con tomate', 'Filete de salmón con espárragos', 'Cazuela de berenjenas'],
+                "Friday": ['Smoothie de frutas con chía', 'Curry de garbanzos', 'Pasta integral con tomate y albahaca'],
+                "Saturday": ['Avena con frutas', 'Bacalao al horno con patatas', 'Pizza de verduras'],
+                "Sunday": ['Tostadas con aguacate', 'Estofado de ternera con verduras', 'Crema de calabaza']
+            };
+            const days = Object.keys(meals);
+            days.forEach(day => {
+                const dayMeals = meals[day];
+                document.querySelectorAll(`td:nth-child(${days.indexOf(day) + 2})`).forEach((cell, index) => {
+                    cell.textContent = dayMeals[index];
+                });
+            });
+        }
+
+        function clearTable() {
+            const cells = document.querySelectorAll('td');
+            cells.forEach(cell => {
+                if (cell.contentEditable === 'true') {
+                    cell.textContent = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
